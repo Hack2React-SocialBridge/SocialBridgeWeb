@@ -4,7 +4,7 @@ import { Form, Button, Alert, Container, FormGroup } from "react-bootstrap";
 import { API } from "../api/requests";
 
 export default function AddForm() {
-  const [result, setResult] = useState("success");
+  const [result, setResult] = useState("pending");
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
 
