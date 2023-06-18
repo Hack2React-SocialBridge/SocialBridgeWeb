@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Container, FormGroup } from "react-bootstrap";
 
 import { API } from "../api/requests";
 
@@ -10,7 +10,7 @@ export default function AddForm() {
     async function onSubmit() {
         const formData = new FormData();
         formData.append("image", image);
-        formData.append("ngo", 1);
+        formData.append("ngo", 7);
         formData.append("content", content);
         const { data } = await API.post("posts/", formData, {
             headers: {
@@ -30,7 +30,7 @@ export default function AddForm() {
     }
 
     return (
-        <div
+        <Container
             className="position-absolute top-50 start-50 translate-middle d-flex h-75 w-75"
             style={{ maxWidth: "1000px" }}
         >
@@ -49,9 +49,10 @@ export default function AddForm() {
                     invalid={true}
                 >
                     <Form.Label>Treść</Form.Label>
-                    <Form.Control
-                        type="text"
+                    <textarea
+                        rows={8}
                         placeholder="Wprowadź treść posta"
+                        className="form-control"
                         value={content}
                         onChange={(e) => handleChangeField(e, setContent)}
                         invalid={true}
@@ -63,10 +64,12 @@ export default function AddForm() {
                         invalid={true}
                     />
                 </Form.Group>
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
+                <FormGroup className="d-flex justify-content-center">
+                    <Button variant="primary" type="submit" className="w-50">
+                        Dodaj
+                    </Button>
+                </FormGroup>
             </Form>
-        </div>
+        </Container>
     );
 }
